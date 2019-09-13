@@ -1,6 +1,8 @@
 # Overview
 
-This is the repository for Amanda Blubaugh's BIOS8060E Project
+This is the repository for Amanda Blubaugh's BIOS8060E 
+
+(Main Project Document)[https://github.com/epid8060fall2019/Amanda_Blubaugh-project/raw/master/Bios8060E_project_AmandaBlubaugh.docx]
 
 # Pre-requisites
 
