@@ -1,8 +1,9 @@
 ---
 title: "Bios8060E_Project"
 author: "Amanda Blubaugh"
-date: 'last updated: 9/13/2019'
+date: 'last updated: 10/8/2019'
 output:
+  word_document: default
   html_document:
     df_print: paged
 ---
