@@ -12,10 +12,38 @@ output:
 
 Perform differential expression (DE) of previous data from an AD canine model paper in both a multifactoral DE that mimics the original paper (using R open source versus proprietary software of the paper) and in a classic one factor DE without considering an the additional factor of previous canine sensitization to the HDM model. I would like to see how immunological genes that are significantly up or down-regulated change between the two DE evaluations.
 
-## Project Data
+This data set has 12 total canine samples: 6 dogs have been sensitized to the House Dust Mite (HDM) and 6 have not.  All dogs are exposed to the HDM and sampled at a 24 hour point after exposure through a patch with HDM crushed paste or a mineral oil patch control. All dogs were also sampled at a 0h, healthy timepoint with no exposure to anything.
+
+The original paper provides a multifactorial differential expression of genes in HDM samples versus 0h control healthy, as well as versus 24h saline, allowing for sensitization of the HDM or not as a factor. 
+
+Traditional atopic dermatitis (exzema) canine models for development of human and canine drugs to treat the disease require that all dogs be sensitized to HDM prior to recieving HDM stimulus for modelled skin to AD. canine AD models are essential for drug development in treating AD for humans and canines. 
+
+## Goals
+
+Since this paper contains 6 subjects with no previous sensitization, and 6 subjects with sensitization, the goal of this project will be to:
+
+1. Replicate the multifactoral DE of data for all 12 dogs (sensitized or not being the additional factor) at 24h HDM versus 0h untreated no exposure.
+
+2. Do additional individual DE of 6 vs. 6 dogs with no multifactoral consideration for sensitization, since the larger group is divided into two smaller groups that dilineate this factor.
+
+## Hypotheses
+It is hypothesized that:
+
+1. Replication of the orginal results will be possible for confirmation of proper manipulation of the data in this study on a multifactoral level and reproducibility to validate the study results.
+
+2. Division of the sample group into smaller, even groups of dogs that have been sensitized or not will provide a DE view that shows differences in DE based on previous sensitization or not, validating whether or not sensitization is required in a HDM canine atopic model.
+
+## Limitations and Justifications
+
+The sample size is quite low for this study, but this is some of the only sample data available for canine AD models to compare sensitized or non- sensitized dogs.  We are also not utilizing saline controls of this study, which are still controversial in whether saline itself produces an inflammatory response to the skin.
+
+There is no previous study evaluating the efficacy of first sensitizing dogs to HDM prior to inducing AD models with HDM paste.
+
+## Project Data Source
 
 Samples from a previously published paper by [Schamber et al. (2014)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4199687/) will be used for this project
 
+Schamber et al. Gene Expression in the Skin of Dogs Sensitized to the House Dust Mite (~Dermatophagoides farinae~). G3: Genes, Genomics, Genetics. 2014 Oct; 4(10): 1787-1795.
 
 ## Sample Source Information
 
