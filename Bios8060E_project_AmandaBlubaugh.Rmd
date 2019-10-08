@@ -1,19 +1,23 @@
 ---
 title: "Bios8060E_Project"
 author: "Amanda Blubaugh"
-date: "last updated: 9/13/2019"
-output: word_document
+date: 'last updated: 9/13/2019'
+output:
+  html_document:
+    df_print: paged
 ---
 
 
 ## Project Overview
 
-### Transcriptomic profile differences in atopic dermatitis canid models when considering using multifactorial differential expression for sensitization of model dogs
+### Transcriptomic profile differences in atopic dermatitis (AD) canid house dust mite (HDM) models when considering using multifactorial differential expression for sensitization of model dogs
 
+Plan: Perform differential expression (DE) of previous data from an AD canine model paper in both a multifactoral DE that mimics the original paper (using R open source versus proprietary software of the paper) and in a classic one factor DE without considering an the additional factor of previous canine sensitization to the HDM model. I would like to see how immunological genes that are significantly up or down-regulated change between the two DE evaluations.
 
 ## Project Data
 
-Samples from a previously published paper by [Schamber et al. (2014)]  will be used for this project
+Samples from a previously published paper by [Schamber et al. (2014)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4199687/) will be used for this project
+
 
 ## Sample Source Information
 

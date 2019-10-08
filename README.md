@@ -4,6 +4,8 @@ This is the repository for Amanda Blubaugh's BIOS8060E
 
 [Main Project Document](https://github.com/epid8060fall2019/Amanda_Blubaugh-project/raw/master/Bios8060E_project_AmandaBlubaugh.docx)
 
+# Transcriptomic profile differences in atopic dermatitis canid models when considering using multifactorial differential expression for sensitization of model dogs
+
 # Pre-requisites
 
 This is a template for a data analysis project using R, Rmarkdown (and variants, e.g. bookdown), Github and a reference manager that can handle bibtex (I recommend [Jabref](http://www.jabref.org/) or [Zotero](https://www.zotero.org/)). It is also assumed that you have a word processor installed (e.g. MS Word or [LibreOffice](https://www.libreoffice.org/)). You need that software stack to make use of this template.
