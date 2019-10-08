@@ -43,7 +43,7 @@ There is no previous study evaluating the efficacy of first sensitizing dogs to 
 
 Samples from a previously published paper by [Schamber et al. (2014)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4199687/) will be used for this project
 
-Schamber et al. Gene Expression in the Skin of Dogs Sensitized to the House Dust Mite (~Dermatophagoides farinae~). G3: Genes, Genomics, Genetics. 2014 Oct; 4(10): 1787-1795.
+Schamber et al. Gene Expression in the Skin of Dogs Sensitized to the House Dust Mite (_Dermatophagoides farinae_). G3: Genes, Genomics, Genetics. 2014 Oct; 4(10): 1787-1795.
 
 ## Sample Source Information
 
