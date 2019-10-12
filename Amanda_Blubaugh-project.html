@@ -405,6 +405,17 @@ summary {
 <p>Samples from a previously published paper by <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4199687/">Schamber et al. (2014)</a> will be used for this project</p>
 <p>Schamber et al. Gene Expression in the Skin of Dogs Sensitized to the House Dust Mite (<em>Dermatophagoides farinae</em>). G3: Genes, Genomics, Genetics. 2014 Oct; 4(10): 1787-1795.</p>
 </div>
+<div id="materials-and-methods" class="section level2">
+<h2>Materials and Methods</h2>
+<p>Prior to working in R studio, I installed <a href="https://www.bioconductor.org/install/">Bioconductor</a> resources on my local computer through the console. This will not work through R studio that I know of: <br></p>
+<pre><code>if (!requireNamespace(&quot;BiocManager&quot;, quietly = TRUE))
+    install.packages(&quot;BiocManager&quot;)
+BiocManager::install()
+
+#also install Biobase to use with GEOquery
+BiocManager::install(c(&quot;Biobase&quot;))</code></pre>
+<p><br></p>
+</div>
 <div id="sample-source-information" class="section level2">
 <h2>Sample Source Information</h2>
 <ol style="list-style-type: decimal">

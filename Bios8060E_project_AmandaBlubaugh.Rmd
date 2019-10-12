@@ -41,6 +41,21 @@ The sample size is quite low for this study, but this is some of the only sample
 
 There is no previous study evaluating the efficacy of first sensitizing dogs to HDM prior to inducing AD models with HDM paste.
 
+
+## Materials and Methods
+Prior to working in R studio, I installed [Bioconductor](https://www.bioconductor.org/install/) resources on my local computer through the console.
+This will not work through R studio that I know of:
+
+```
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install()
+
+#also install Biobase to use with GEOquery
+BiocManager::install(c("Biobase"))
+```
+
+
 ## Project Data Source
 
 Samples from a previously published paper by [Schamber et al. (2014)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4199687/) will be used for this project

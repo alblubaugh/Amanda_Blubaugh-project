@@ -45,6 +45,20 @@ Samples from a previously published paper by [Schamber et al. (2014)](https://ww
 
 Schamber et al. Gene Expression in the Skin of Dogs Sensitized to the House Dust Mite (_Dermatophagoides farinae_). G3: Genes, Genomics, Genetics. 2014 Oct; 4(10): 1787-1795.
 
+## Materials and Methods
+Prior to working in R studio, I installed [Bioconductor](https://www.bioconductor.org/install/) resources on my local computer through the console.
+This will not work through R studio that I know of:
+<br>
+```
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install()
+
+#also install Biobase to use with GEOquery
+BiocManager::install(c("Biobase"))
+```
+<br>
+
 ## Sample Source Information
 
 1. N_2847_24h_S
