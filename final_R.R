@@ -3,6 +3,7 @@
 library(Biobase)
 library(GEOquery)
 library(limma)
+
 # load series and platform data from GEO
 gset <- getGEO("GSE58442", GSEMatrix =TRUE, AnnotGPL=FALSE)
 if (length(gset) > 1) idx <- grep("GPL18789", attr(gset, "names")) else idx <- 1

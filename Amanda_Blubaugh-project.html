@@ -407,14 +407,203 @@ summary {
 </div>
 <div id="materials-and-methods" class="section level2">
 <h2>Materials and Methods</h2>
-<p>Prior to working in R studio, I installed <a href="https://www.bioconductor.org/install/">Bioconductor</a> resources on my local computer through the console. This will not work through R studio that I know of: <br></p>
+<div id="downloading-data-from-geoquery-ncbi-geo-database" class="section level3">
+<h3>Downloading Data from GEOquery (NCBI GEO database)</h3>
+<p>Prior to working in R studio, I installed <a href="https://www.bioconductor.org/install/">Bioconductor</a> resources on my local computer through the console, as well as <a href="https://bioconductor.org/packages/release/bioc/html/GEOquery.html">GEOquery</a> and <a href="https://bioconductor.org/packages/release/bioc/html/limma.html">limma</a> <br></p>
 <pre><code>if (!requireNamespace(&quot;BiocManager&quot;, quietly = TRUE))
     install.packages(&quot;BiocManager&quot;)
 BiocManager::install()
 
-#also install Biobase to use with GEOquery
-BiocManager::install(c(&quot;Biobase&quot;))</code></pre>
+
+BiocManager::install(c(&quot;Biobase&quot;,&quot;GEOquery&quot;,&quot;limma&quot;))
+</code></pre>
 <p><br></p>
+</div>
+<div id="load-libraries-for-use" class="section level3">
+<h3>Load libraries for use</h3>
+<pre class="r"><code>library(limma)
+library(Biobase)</code></pre>
+<pre><code>## Loading required package: BiocGenerics</code></pre>
+<pre><code>## Loading required package: parallel</code></pre>
+<pre><code>## 
+## Attaching package: &#39;BiocGenerics&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:parallel&#39;:
+## 
+##     clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+##     clusterExport, clusterMap, parApply, parCapply, parLapply,
+##     parLapplyLB, parRapply, parSapply, parSapplyLB</code></pre>
+<pre><code>## The following object is masked from &#39;package:limma&#39;:
+## 
+##     plotMA</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     IQR, mad, sd, var, xtabs</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     anyDuplicated, append, as.data.frame, basename, cbind,
+##     colnames, dirname, do.call, duplicated, eval, evalq, Filter,
+##     Find, get, grep, grepl, intersect, is.unsorted, lapply, Map,
+##     mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+##     pmin.int, Position, rank, rbind, Reduce, rownames, sapply,
+##     setdiff, sort, table, tapply, union, unique, unsplit, which,
+##     which.max, which.min</code></pre>
+<pre><code>## Welcome to Bioconductor
+## 
+##     Vignettes contain introductory material; view with
+##     &#39;browseVignettes()&#39;. To cite Bioconductor, see
+##     &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.</code></pre>
+<pre class="r"><code>library(GEOquery)</code></pre>
+<pre><code>## Setting options(&#39;download.file.method.GEOquery&#39;=&#39;auto&#39;)</code></pre>
+<pre><code>## Setting options(&#39;GEOquery.inmemory.gpl&#39;=FALSE)</code></pre>
+</div>
+<div id="next-download-data-from-geo-datasets" class="section level3">
+<h3>Next, download data from GEO datasets</h3>
+<pre class="r"><code>gset &lt;- getGEO(&quot;GSE58442&quot;, GSEMatrix =TRUE, AnnotGPL=FALSE)</code></pre>
+<pre><code>## Found 1 file(s)</code></pre>
+<pre><code>## GSE58442_series_matrix.txt.gz</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   .default = col_double()
+## )</code></pre>
+<pre><code>## See spec(...) for full column specifications.</code></pre>
+<pre><code>## File stored at:</code></pre>
+<pre><code>## C:\Users\alblu\AppData\Local\Temp\RtmpU5d6wg/GPL18789.soft</code></pre>
+<pre class="r"><code>if (length(gset) &gt; 1) idx &lt;- grep(&quot;GPL18789&quot;, attr(gset, &quot;names&quot;)) else idx &lt;- 1
+gset &lt;- gset[[idx]]</code></pre>
+</div>
+<div id="inspect-uncleaned-data" class="section level3">
+<h3>Inspect Uncleaned Data</h3>
+<pre class="r"><code>head(gset)</code></pre>
+<pre><code>## ExpressionSet (storageMode: lockedEnvironment)
+## assayData: 1 features, 60 samples 
+##   element names: exprs 
+## protocolData: none
+## phenoData
+##   sampleNames: GSM1411137 GSM1411138 ... GSM1411196 (60 total)
+##   varLabels: title geo_accession ... treatment:ch1 (42 total)
+##   varMetadata: labelDescription
+## featureData
+##   featureNames: 1
+##   fvarLabels: ID COL ... SEQUENCE (18 total)
+##   fvarMetadata: Column Description labelDescription
+## experimentData: use &#39;experimentData(object)&#39;
+##   pubMedIds: 25098772 
+## Annotation: GPL18789</code></pre>
+<pre class="r"><code>head(pData)</code></pre>
+<pre><code>##                                                                                
+## 1 new(&quot;standardGeneric&quot;, .Data = function (object)                             
+## 2 standardGeneric(&quot;pData&quot;), generic = structure(&quot;pData&quot;, package = &quot;Biobase&quot;), 
+## 3     package = &quot;Biobase&quot;, group = list(), valueClass = character(0),          
+## 4     signature = &quot;object&quot;, default = NULL, skeleton = (function (object)      
+## 5     stop(&quot;invalid call in method dispatch to &#39;pData&#39; (no default method)&quot;,   
+## 6         domain = NA))(object))</code></pre>
+</div>
+</div>
+<div id="preliminary-analysis" class="section level2">
+<h2>Preliminary Analysis</h2>
+<pre class="r"><code># make proper column names to match toptable 
+fvarLabels(gset) &lt;- make.names(fvarLabels(gset))
+
+# group names for all samples
+gsms &lt;- &quot;013240132401324013240132401324013240132401324013240132401324&quot;
+sml &lt;- c()
+for (i in 1:nchar(gsms)) { sml[i] &lt;- substr(gsms,i,i) }
+
+# log2 transform
+ex &lt;- exprs(gset)
+qx &lt;- as.numeric(quantile(ex, c(0., 0.25, 0.5, 0.75, 0.99, 1.0), na.rm=T))
+LogC &lt;- (qx[5] &gt; 100) ||
+  (qx[6]-qx[1] &gt; 50 &amp;&amp; qx[2] &gt; 0) ||
+  (qx[2] &gt; 0 &amp;&amp; qx[2] &lt; 1 &amp;&amp; qx[4] &gt; 1 &amp;&amp; qx[4] &lt; 2)
+if (LogC) { ex[which(ex &lt;= 0)] &lt;- NaN
+exprs(gset) &lt;- log2(ex) }
+
+# set up the data and proceed with analysis
+sml &lt;- paste(&quot;G&quot;, sml, sep=&quot;&quot;)    # set group names
+fl &lt;- as.factor(sml)
+gset$description &lt;- fl
+design &lt;- model.matrix(~ description + 0, gset)
+colnames(design) &lt;- levels(fl)
+fit &lt;- lmFit(gset, design)
+fit2 &lt;- eBayes(fit)
+topTable(fit2)</code></pre>
+<pre><code>##          ID COL ROW                  NAME               SPOT_ID
+## 58100 58100  15 242 CUST_5667_PI425858678 CUST_5667_PI425858678
+## 39934 39934  71 165          (+)E1A_r60_1          (+)E1A_r60_1
+## 40727 40727  68 220          (+)E1A_r60_1          (+)E1A_r60_1
+## 17136 17136 140 170          (+)E1A_r60_1          (+)E1A_r60_1
+## 35818 35818  83 198          (+)E1A_r60_1          (+)E1A_r60_1
+## 39232 39232  73 257          (+)E1A_r60_1          (+)E1A_r60_1
+## 9251   9251 164 196          (+)E1A_r60_1          (+)E1A_r60_1
+## 36284 36284  82 249          (+)E1A_r60_1          (+)E1A_r60_1
+## 60894 60894   7 229          (+)E1A_r60_1          (+)E1A_r60_1
+## 52027 52027  34 251          (+)E1A_r60_1          (+)E1A_r60_1
+##       CONTROL_TYPE REFSEQ GB_ACC EntrezGene_ID GENE_SYMBOL GENE_NAME
+## 58100        FALSE                                                  
+## 39934          pos                                                  
+## 40727          pos                                                  
+## 17136          pos                                                  
+## 35818          pos                                                  
+## 39232          pos                                                  
+## 9251           pos                                                  
+## 36284          pos                                                  
+## 60894          pos                                                  
+## 52027          pos                                                  
+##       UNIGENE_ID         ENSEMBL_ID       ACCESSION_STRING
+## 58100            ENSCAFT00000042294 ens|ENSCAFT00000042294
+## 39934                                                     
+## 40727                                                     
+## 17136                                                     
+## 35818                                                     
+## 39232                                                     
+## 9251                                                      
+## 36284                                                     
+## 60894                                                     
+## 52027                                                     
+##       CHROMOSOMAL_LOCATION DESCRIPTION GO_ID
+## 58100             unmapped                  
+## 39934                                       
+## 40727                                       
+## 17136                                       
+## 35818                                       
+## 39232                                       
+## 9251                                        
+## 36284                                       
+## 60894                                       
+## 52027                                       
+##                                                           SEQUENCE
+## 58100 CGGCGGGTGTTGACGCGATGTGATTTCTGCCCAGTGCTCTGAATGTCAAAGTGAAGAAAT
+## 39934                                                             
+## 40727                                                             
+## 17136                                                             
+## 35818                                                             
+## 39232                                                             
+## 9251                                                              
+## 36284                                                             
+## 60894                                                             
+## 52027                                                             
+##             G0       G1       G2       G3       G4  AveExpr        F
+## 58100 18.89194 18.86503 18.96475 18.84497 18.93218 18.89978 325173.0
+## 39934 18.11555 18.05075 18.42295 18.00749 18.37516 18.19438 271985.5
+## 40727 18.19921 18.12666 18.49375 18.07714 18.44557 18.26847 268295.3
+## 17136 18.11698 18.06180 18.43347 18.01683 18.38568 18.20295 266609.7
+## 35818 18.15314 18.07983 18.44305 18.03145 18.39014 18.21952 264947.1
+## 39232 18.26158 18.18787 18.56994 18.14863 18.51953 18.33751 262678.7
+## 9251  18.17708 18.12538 18.52433 18.09564 18.46371 18.27723 260452.1
+## 36284 18.23556 18.16524 18.54313 18.12610 18.48721 18.31145 260272.3
+## 60894 18.21562 18.19253 18.53691 18.16102 18.50982 18.32318 260157.3
+## 52027 18.26375 18.20822 18.58356 18.17900 18.52945 18.35279 259850.4
+##             P.Value     adj.P.Val
+## 58100 1.317978e-128 8.300097e-124
+## 39934 2.447089e-126 4.565357e-122
+## 40727 3.648967e-126 4.565357e-122
+## 17136 4.387554e-126 4.565357e-122
+## 35818 5.268483e-126 4.565357e-122
+## 39232 6.774972e-126 4.565357e-122
+## 9251  8.690322e-126 4.565357e-122
+## 36284 8.867580e-126 4.565357e-122
+## 60894 8.982969e-126 4.565357e-122
+## 52027 9.298534e-126 4.565357e-122</code></pre>
 </div>
 <div id="sample-source-information" class="section level2">
 <h2>Sample Source Information</h2>

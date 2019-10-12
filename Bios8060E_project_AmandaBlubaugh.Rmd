@@ -41,26 +41,79 @@ The sample size is quite low for this study, but this is some of the only sample
 
 There is no previous study evaluating the efficacy of first sensitizing dogs to HDM prior to inducing AD models with HDM paste.
 
-
-## Materials and Methods
-Prior to working in R studio, I installed [Bioconductor](https://www.bioconductor.org/install/) resources on my local computer through the console.
-This will not work through R studio that I know of:
-
-```
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install()
-
-#also install Biobase to use with GEOquery
-BiocManager::install(c("Biobase"))
-```
-
-
 ## Project Data Source
 
 Samples from a previously published paper by [Schamber et al. (2014)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4199687/) will be used for this project
 
 Schamber et al. Gene Expression in the Skin of Dogs Sensitized to the House Dust Mite (_Dermatophagoides farinae_). G3: Genes, Genomics, Genetics. 2014 Oct; 4(10): 1787-1795.
+
+## Materials and Methods
+
+### Downloading Data from GEOquery (NCBI GEO database)
+Prior to working in R studio, I installed [Bioconductor](https://www.bioconductor.org/install/) resources on my local computer through the console, as well as [GEOquery](https://bioconductor.org/packages/release/bioc/html/GEOquery.html) and [limma](https://bioconductor.org/packages/release/bioc/html/limma.html)
+<br>
+```
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install()
+
+
+BiocManager::install(c("Biobase","GEOquery","limma"))
+
+```
+<br>
+
+### Load libraries for use
+```{r}
+library(limma)
+library(Biobase)
+library(GEOquery)
+```
+
+### Next, download data from GEO datasets
+```{r}
+gset <- getGEO("GSE58442", GSEMatrix =TRUE, AnnotGPL=FALSE)
+if (length(gset) > 1) idx <- grep("GPL18789", attr(gset, "names")) else idx <- 1
+gset <- gset[[idx]]
+```
+
+### Inspect Uncleaned Data
+```{r}
+head(gset)
+head(pData)
+```
+
+## Preliminary Analysis
+```{r}
+# make proper column names to match toptable 
+fvarLabels(gset) <- make.names(fvarLabels(gset))
+
+# group names for all samples
+gsms <- "013240132401324013240132401324013240132401324013240132401324"
+sml <- c()
+for (i in 1:nchar(gsms)) { sml[i] <- substr(gsms,i,i) }
+
+# log2 transform
+ex <- exprs(gset)
+qx <- as.numeric(quantile(ex, c(0., 0.25, 0.5, 0.75, 0.99, 1.0), na.rm=T))
+LogC <- (qx[5] > 100) ||
+  (qx[6]-qx[1] > 50 && qx[2] > 0) ||
+  (qx[2] > 0 && qx[2] < 1 && qx[4] > 1 && qx[4] < 2)
+if (LogC) { ex[which(ex <= 0)] <- NaN
+exprs(gset) <- log2(ex) }
+
+# set up the data and proceed with analysis
+sml <- paste("G", sml, sep="")    # set group names
+fl <- as.factor(sml)
+gset$description <- fl
+design <- model.matrix(~ description + 0, gset)
+colnames(design) <- levels(fl)
+fit <- lmFit(gset, design)
+fit2 <- eBayes(fit)
+topTable(fit2)
+
+```
+
 
 ## Sample Source Information
 
