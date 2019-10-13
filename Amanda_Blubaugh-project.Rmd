@@ -156,8 +156,7 @@ Gene Expression Omnibus: NCBI gene expression and hybridization array data repos
 Nucleic Acids Res. 2002 Jan 1;30(1):207-10
 [GEO (Gene Expression Ombnibus) and GEO2R](https://www.ncbi.nlm.nih.gov/geo/)
 
-Simon (_et al_). Design and Analysis of DNA Microarray Investigations. Springer-Veriag, New York. ISBN ISBN 0-387-00135-2. pp 66-69. 
-[DIfferential Gene Expression in arrays](https://brb.nci.nih.gov/techreport/DesignandAnalysisofDNAMicroarrayInvestigations.pdf)
+[Simon et al.](https://brb.nci.nih.gov/techreport/DesignandAnalysisofDNAMicroarrayInvestigations.pdf) Design and Analysis of DNA Microarray Investigations. Springer-Veriag, New York. ISBN ISBN 0-387-00135-2. pp 66-69: Differential Gene Expression in Microarrays.
 
 ## R Packages
 ```{r}
