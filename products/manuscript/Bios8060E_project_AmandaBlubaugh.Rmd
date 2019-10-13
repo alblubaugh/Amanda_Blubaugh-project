@@ -142,8 +142,12 @@ META_tib
 In this metadata information table I have created, I have manually added color identifications in that were not part of the phenotyptic table copied to a .txt file from GEO2R. This is so when I run PCA, we can see which groups may naturally diverge. 
 
 ## Principal Component Analysis
-In PCA, the heirarchical clustering algorithm does not take phenotypic groups into account.
+In PCA, the heirarchical clustering algorithm does not take phenotypic groups into account. Using our additional metadata coloring, we can create a PCA with the microarry data we have.
 
+```{r}
+knitr::include_graphics("../../results/Schamber_2d_PCA_with_all_variables_lower_res.png")
+
+```
 
 
 # Resources
