@@ -2,7 +2,7 @@
 
 This is the [repository for Amanda Blubaugh's BIOS8060E Website and Project](https://epid8060fall2019.github.io/Amanda_Blubaugh-project/Amanda_Blubaugh-project)
 
-[Main Project Document](https://github.com/epid8060fall2019/Amanda_Blubaugh-project/raw/master/Bios8060E_project_AmandaBlubaugh.docx)
+[Main Project Document](https://github.com/epid8060fall2019/Amanda_Blubaugh-project/blob/master/products/manuscript/Bios8060E_project_AmandaBlubaugh.docx)
 
 
 
