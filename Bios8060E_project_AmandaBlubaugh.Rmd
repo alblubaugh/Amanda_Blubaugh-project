@@ -50,8 +50,10 @@ Schamber et al. Gene Expression in the Skin of Dogs Sensitized to the House Dust
 ## Materials and Methods
 
 ### Downloading Data from GEOquery (NCBI GEO database)
+
 Prior to working in R studio, I installed [Bioconductor](https://www.bioconductor.org/install/) resources on my local computer through the console, as well as [GEOquery](https://bioconductor.org/packages/release/bioc/html/GEOquery.html) and [limma](https://bioconductor.org/packages/release/bioc/html/limma.html)
 <br>
+In the console:
 ```
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
@@ -121,8 +123,34 @@ topTable(fit2)
 
 ```
 
+## Aquire phenotypic data for the samples run on this microarray
+Going to [GEO2R](https://www.ncbi.nlm.nih.gov/geo/geo2r/), we can obtain the phenotypic data attached to each sample and label them by number for the design above. This is a way to manipulate the data and get preliminary results without having the raw data directly on the local computer being used.
 
-## Sample Source Information
+Phenotypic data for each raw .txt file can be highlighted and read into a .txt file for manipulation with the raw data (i.e. to clean it up in a way we can acheive ultimate our goals in the study)
+
+```{r}
+#Here, we ID where we saved the .txt file we got for reading into a table, notating that the file has tabular separations ("\t" for sep), that there is a header for each column (our variables; header=TRUE), and that we have row names which are the same .txt GSM# .txt files that we have read in previously.
+
+META <- read.table("./data/processed_data/Schamber_phenotypes.txt", sep="\t", header=TRUE, row.names=1)
+META
+
+```
+
+In this metadata information table I have created, I have manually added color identifications in that were not part of the phenotyptic table copied to a .txt file from GEO2R.
+
+
+
+## Resources
+
+```{r}
+citation("Biobase")
+citation("GEOquery")
+citation("limma")
+
+```
+
+
+### Sample SOurcec Information
 
 1. N_2847_24h_S
 Organism:	Canis lupus familiaris
