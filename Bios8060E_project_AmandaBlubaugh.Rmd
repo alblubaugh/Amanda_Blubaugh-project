@@ -87,6 +87,7 @@ head(pData)
 ```{r}
 # make proper column names to match toptable 
 fvarLabels(gset) <- make.names(fvarLabels(gset))
+fvarLabels(gset)
 
 # group names for all samples
 gsms <- "013240132401324013240132401324013240132401324013240132401324"
@@ -105,9 +106,15 @@ exprs(gset) <- log2(ex) }
 # set up the data and proceed with analysis
 sml <- paste("G", sml, sep="")    # set group names
 fl <- as.factor(sml)
+fl
 gset$description <- fl
+
+# Create and view design matrix
 design <- model.matrix(~ description + 0, gset)
 colnames(design) <- levels(fl)
+head(design)
+
+# lm function fit with single variable
 fit <- lmFit(gset, design)
 fit2 <- eBayes(fit)
 topTable(fit2)
