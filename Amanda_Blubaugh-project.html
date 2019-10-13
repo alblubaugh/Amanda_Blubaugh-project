@@ -364,20 +364,19 @@ summary {
 
 <h1 class="title toc-ignore">Bios 8060E Project</h1>
 <h4 class="author">Amanda Blubaugh</h4>
-<h4 class="date">last updated: 10/8/2019</h4>
+<h4 class="date">last updated: 10/13/2019</h4>
 
 </div>
 
 
-<div id="project-overview" class="section level2">
-<h2>Project Overview</h2>
+<div id="project-overview" class="section level1">
+<h1>Project Overview</h1>
 <div id="transcriptomic-profile-differences-in-atopic-dermatitis-ad-canid-house-dust-mite-hdm-models-when-considering-using-multifactorial-differential-expression-for-sensitization-of-model-dogs" class="section level3">
 <h3>Transcriptomic profile differences in atopic dermatitis (AD) canid house dust mite (HDM) models when considering using multifactorial differential expression for sensitization of model dogs</h3>
 <p>Perform differential expression (DE) of previous data from an AD canine model paper in both a multifactoral DE that mimics the original paper (using R open source versus proprietary software of the paper) and in a classic one factor DE without considering an the additional factor of previous canine sensitization to the HDM model. I would like to see how immunological genes that are significantly up or down-regulated change between the two DE evaluations.</p>
 <p>This data set has 12 total canine samples: 6 dogs have been sensitized to the House Dust Mite (HDM) and 6 have not. All dogs are exposed to the HDM and sampled at a 24 hour point after exposure through a patch with HDM crushed paste or a mineral oil patch control. All dogs were also sampled at a 0h, healthy timepoint with no exposure to anything.</p>
 <p>The original paper provides a multifactorial differential expression of genes in HDM samples versus 0h control healthy, as well as versus 24h saline, allowing for sensitization of the HDM or not as a factor.</p>
 <p>Traditional atopic dermatitis (exzema) canine models for development of human and canine drugs to treat the disease require that all dogs be sensitized to HDM prior to recieving HDM stimulus for modelled skin to AD. canine AD models are essential for drug development in treating AD for humans and canines.</p>
-</div>
 </div>
 <div id="goals" class="section level2">
 <h2>Goals</h2>
@@ -402,14 +401,14 @@ summary {
 </div>
 <div id="project-data-source" class="section level2">
 <h2>Project Data Source</h2>
-<p>Samples from a previously published paper by <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4199687/">Schamber et al. (2014)</a> will be used for this project</p>
-<p>Schamber et al. Gene Expression in the Skin of Dogs Sensitized to the House Dust Mite (<em>Dermatophagoides farinae</em>). G3: Genes, Genomics, Genetics. 2014 Oct; 4(10): 1787-1795.</p>
+<p>Samples from a previously published paper by <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4199687/">Schamber et al. (2014)</a> will be used for this project and is in project resources.</p>
 </div>
-<div id="materials-and-methods" class="section level2">
-<h2>Materials and Methods</h2>
-<div id="downloading-data-from-geoquery-ncbi-geo-database" class="section level3">
-<h3>Downloading Data from GEOquery (NCBI GEO database)</h3>
-<p>Prior to working in R studio, I installed <a href="https://www.bioconductor.org/install/">Bioconductor</a> resources on my local computer through the console, as well as <a href="https://bioconductor.org/packages/release/bioc/html/GEOquery.html">GEOquery</a> and <a href="https://bioconductor.org/packages/release/bioc/html/limma.html">limma</a> <br></p>
+</div>
+<div id="materials-and-methods" class="section level1">
+<h1>Materials and Methods</h1>
+<div id="downloading-data-from-geoquery-ncbi-geo-database" class="section level2">
+<h2>Downloading Data from GEOquery (NCBI GEO database)</h2>
+<p>Prior to working in R studio, I installed <a href="https://www.bioconductor.org/install/">Bioconductor</a> resources on my local computer through the console, as well as <a href="https://bioconductor.org/packages/release/bioc/html/GEOquery.html">GEOquery</a> and <a href="https://bioconductor.org/packages/release/bioc/html/limma.html">limma</a> <br> In the console:</p>
 <pre><code>if (!requireNamespace(&quot;BiocManager&quot;, quietly = TRUE))
     install.packages(&quot;BiocManager&quot;)
 BiocManager::install()
@@ -419,8 +418,8 @@ BiocManager::install(c(&quot;Biobase&quot;,&quot;GEOquery&quot;,&quot;limma&quot
 </code></pre>
 <p><br></p>
 </div>
-<div id="load-libraries-for-use" class="section level3">
-<h3>Load libraries for use</h3>
+<div id="load-libraries-for-use" class="section level2">
+<h2>Load libraries for use</h2>
 <pre class="r"><code>library(limma)
 library(Biobase)</code></pre>
 <pre><code>## Loading required package: BiocGenerics</code></pre>
@@ -455,9 +454,20 @@ library(Biobase)</code></pre>
 <pre class="r"><code>library(GEOquery)</code></pre>
 <pre><code>## Setting options(&#39;download.file.method.GEOquery&#39;=&#39;auto&#39;)</code></pre>
 <pre><code>## Setting options(&#39;GEOquery.inmemory.gpl&#39;=FALSE)</code></pre>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## -- Attaching packages ------------------------------------------------------------------------ tidyverse 1.2.1 --</code></pre>
+<pre><code>## v ggplot2 3.2.1     v purrr   0.3.2
+## v tibble  2.1.3     v dplyr   0.8.3
+## v tidyr   1.0.0     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.4.0</code></pre>
+<pre><code>## -- Conflicts --------------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::combine()    masks Biobase::combine(), BiocGenerics::combine()
+## x dplyr::filter()     masks stats::filter()
+## x dplyr::lag()        masks stats::lag()
+## x ggplot2::Position() masks BiocGenerics::Position(), base::Position()</code></pre>
 </div>
-<div id="next-download-data-from-geo-datasets" class="section level3">
-<h3>Next, download data from GEO datasets</h3>
+<div id="cache-data-from-geo-datasets" class="section level2">
+<h2>Cache data from GEO datasets</h2>
 <pre class="r"><code>gset &lt;- getGEO(&quot;GSE58442&quot;, GSEMatrix =TRUE, AnnotGPL=FALSE)</code></pre>
 <pre><code>## Found 1 file(s)</code></pre>
 <pre><code>## GSE58442_series_matrix.txt.gz</code></pre>
@@ -467,10 +477,9 @@ library(Biobase)</code></pre>
 ## )</code></pre>
 <pre><code>## See spec(...) for full column specifications.</code></pre>
 <pre><code>## File stored at:</code></pre>
-<pre><code>## C:\Users\alblu\AppData\Local\Temp\RtmpU5d6wg/GPL18789.soft</code></pre>
+<pre><code>## C:\Users\alblu\AppData\Local\Temp\RtmpQZtqt5/GPL18789.soft</code></pre>
 <pre class="r"><code>if (length(gset) &gt; 1) idx &lt;- grep(&quot;GPL18789&quot;, attr(gset, &quot;names&quot;)) else idx &lt;- 1
 gset &lt;- gset[[idx]]</code></pre>
-</div>
 <div id="inspect-uncleaned-data" class="section level3">
 <h3>Inspect Uncleaned Data</h3>
 <pre class="r"><code>head(gset)</code></pre>
@@ -499,12 +508,18 @@ gset &lt;- gset[[idx]]</code></pre>
 ## 6         domain = NA))(object))</code></pre>
 </div>
 </div>
-<div id="preliminary-analysis" class="section level2">
-<h2>Preliminary Analysis</h2>
+<div id="preliminary-analysis-with-geo2r" class="section level2">
+<h2>Preliminary Analysis with GEO2R</h2>
 <pre class="r"><code># make proper column names to match toptable 
 fvarLabels(gset) &lt;- make.names(fvarLabels(gset))
-
-# group names for all samples
+fvarLabels(gset)</code></pre>
+<pre><code>##  [1] &quot;ID&quot;                   &quot;COL&quot;                  &quot;ROW&quot;                 
+##  [4] &quot;NAME&quot;                 &quot;SPOT_ID&quot;              &quot;CONTROL_TYPE&quot;        
+##  [7] &quot;REFSEQ&quot;               &quot;GB_ACC&quot;               &quot;EntrezGene_ID&quot;       
+## [10] &quot;GENE_SYMBOL&quot;          &quot;GENE_NAME&quot;            &quot;UNIGENE_ID&quot;          
+## [13] &quot;ENSEMBL_ID&quot;           &quot;ACCESSION_STRING&quot;     &quot;CHROMOSOMAL_LOCATION&quot;
+## [16] &quot;DESCRIPTION&quot;          &quot;GO_ID&quot;                &quot;SEQUENCE&quot;</code></pre>
+<pre class="r"><code># group names for all samples
 gsms &lt;- &quot;013240132401324013240132401324013240132401324013240132401324&quot;
 sml &lt;- c()
 for (i in 1:nchar(gsms)) { sml[i] &lt;- substr(gsms,i,i) }
@@ -521,9 +536,25 @@ exprs(gset) &lt;- log2(ex) }
 # set up the data and proceed with analysis
 sml &lt;- paste(&quot;G&quot;, sml, sep=&quot;&quot;)    # set group names
 fl &lt;- as.factor(sml)
-gset$description &lt;- fl
+fl</code></pre>
+<pre><code>##  [1] G0 G1 G3 G2 G4 G0 G1 G3 G2 G4 G0 G1 G3 G2 G4 G0 G1 G3 G2 G4 G0 G1 G3
+## [24] G2 G4 G0 G1 G3 G2 G4 G0 G1 G3 G2 G4 G0 G1 G3 G2 G4 G0 G1 G3 G2 G4 G0
+## [47] G1 G3 G2 G4 G0 G1 G3 G2 G4 G0 G1 G3 G2 G4
+## Levels: G0 G1 G2 G3 G4</code></pre>
+<pre class="r"><code>gset$description &lt;- fl
+
+# Create and view design matrix
 design &lt;- model.matrix(~ description + 0, gset)
 colnames(design) &lt;- levels(fl)
+head(design)</code></pre>
+<pre><code>##            G0 G1 G2 G3 G4
+## GSM1411137  1  0  0  0  0
+## GSM1411138  0  1  0  0  0
+## GSM1411139  0  0  0  1  0
+## GSM1411140  0  0  1  0  0
+## GSM1411141  0  0  0  0  1
+## GSM1411142  1  0  0  0  0</code></pre>
+<pre class="r"><code># lm function fit with single variable
 fit &lt;- lmFit(gset, design)
 fit2 &lt;- eBayes(fit)
 topTable(fit2)</code></pre>
@@ -604,9 +635,127 @@ topTable(fit2)</code></pre>
 ## 36284 8.867580e-126 4.565357e-122
 ## 60894 8.982969e-126 4.565357e-122
 ## 52027 9.298534e-126 4.565357e-122</code></pre>
+<p>In this preliminary analysis, we can see which probes had the highest scoring False Discovery Rate (FDR)/ adjusted p-value for change in probe fluoresence (number of bound, tagged fluorescent transcripts to the probe on the microarray) with a basic linear model, adjusted with a Bayesian fit. I don’t have probes that have a gene symbol attached to them separated from those without a gene symbol. I also haven’t viewed other aspects of the data yet (principal component analysis (PCA) for example).</p>
 </div>
-<div id="sample-source-information" class="section level2">
-<h2>Sample Source Information</h2>
+<div id="aquire-additional-phenotypic-data-for-local-use-of-samples-in-this-study" class="section level2">
+<h2>Aquire additional phenotypic data for local use of samples in this study</h2>
+<p>Going to <a href="https://www.ncbi.nlm.nih.gov/geo/geo2r/">GEO2R</a>, we can obtain the phenotypic data attached to each sample and label them by number for the design above. This is a way to manipulate the data and get preliminary results without having the raw data directly on the local computer being used.</p>
+<p>Phenotypic data for each raw .txt file can be highlighted and read into a .txt file for manipulation with the raw data (i.e. to clean it up in a way we can acheive ultimate our goals in the study)</p>
+<pre class="r"><code>#Here, we locate where we saved the .txt file we got for reading metadata into a table, notating that the file has tabular separations (&quot;\t&quot; for sep), that there is a header for each column (our variables; header=TRUE), and that we have row names which are the same .txt GSM# .txt files that we have read in previously.
+
+META &lt;- read.table(&quot;./data/processed_data/Schamber_phenotypes.txt&quot;, sep=&quot;\t&quot;, header=TRUE, row.names=1)
+head(META)</code></pre>
+<pre><code>##                                                    Type     Color Label
+## GSM1411137_A_2838_0h_Slide6-3_2_4-49.txt        noTx_0h darkgreen  2838
+## GSM1411138_A_2838_6h_A_Slide6-3_1_3-44.txt       HDM_6h      gold  2838
+## GSM1411139_A_2838_6h_S_Slide6-3_1_2-43.txt    saline_6h   orchid2  2838
+## GSM1411140_A_2838_24h_A_Slide3-10_1_2-18.txt    HDM_24h firebrick  2838
+## GSM1411141_A_2838_24h_S_Slide1-8_2_4-8.txt   saline_24h  darkblue  2838
+## GSM1411142_A_2839_0h_Slide7-2_1_3-51.txt        noTx_0h darkgreen  2839
+##                                              Sensitized       ColorSens
+## GSM1411137_A_2838_0h_Slide6-3_2_4-49.txt              y darkolivegreen1
+## GSM1411138_A_2838_6h_A_Slide6-3_1_3-44.txt            y lightgoldenrod2
+## GSM1411139_A_2838_6h_S_Slide6-3_1_2-43.txt            y         orchid2
+## GSM1411140_A_2838_24h_A_Slide3-10_1_2-18.txt          y          coral1
+## GSM1411141_A_2838_24h_S_Slide1-8_2_4-8.txt            y      royalblue1
+## GSM1411142_A_2839_0h_Slide7-2_1_3-51.txt              y darkolivegreen1</code></pre>
+<pre class="r"><code>META_tib &lt;- as_tibble(META, row.names=rownames(META))
+META_tib</code></pre>
+<pre><code>## # A tibble: 60 x 5
+##    Type       Color     Label Sensitized ColorSens      
+##    &lt;fct&gt;      &lt;fct&gt;     &lt;int&gt; &lt;fct&gt;      &lt;fct&gt;          
+##  1 noTx_0h    darkgreen  2838 y          darkolivegreen1
+##  2 HDM_6h     gold       2838 y          lightgoldenrod2
+##  3 saline_6h  orchid2    2838 y          orchid2        
+##  4 HDM_24h    firebrick  2838 y          coral1         
+##  5 saline_24h darkblue   2838 y          royalblue1     
+##  6 noTx_0h    darkgreen  2839 y          darkolivegreen1
+##  7 HDM_6h     gold       2839 y          lightgoldenrod2
+##  8 saline_6h  orchid2    2839 y          orchid2        
+##  9 HDM_24h    firebrick  2839 y          coral1         
+## 10 saline_24h darkblue   2839 y          royalblue1     
+## # ... with 50 more rows</code></pre>
+<p>In this metadata information table I have created, I have manually added color identifications in that were not part of the phenotyptic table copied to a .txt file from GEO2R. This is so when I run PCA, we can see which groups may naturally diverge.</p>
+</div>
+<div id="principal-component-analysis" class="section level2">
+<h2>Principal Component Analysis</h2>
+<p>In PCA, the heirarchical clustering algorithm does not take phenotypic groups into account.</p>
+</div>
+</div>
+<div id="resources" class="section level1">
+<h1>Resources</h1>
+<div id="references" class="section level2">
+<h2>References</h2>
+<p><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4199687/">Schamber et al.</a> Gene Expression in the Skin of Dogs Sensitized to the House Dust Mite (<em>Dermatophagoides farinae</em>). G3: Genes, Genomics, Genetics. 2014 Oct; 4(10): 1787-1795. <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE58442">Accession #GSE58442</a></p>
+<p>Edgar R, Domrachev M, Lash AE. Gene Expression Omnibus: NCBI gene expression and hybridization array data repository Nucleic Acids Res. 2002 Jan 1;30(1):207-10 <a href="https://www.ncbi.nlm.nih.gov/geo/">GEO (Gene Expression Ombnibus) and GEO2R</a></p>
+<p>Simon (<em>et al</em>). Design and Analysis of DNA Microarray Investigations. Springer-Veriag, New York. ISBN ISBN 0-387-00135-2. pp 66-69. <a href="https://brb.nci.nih.gov/techreport/DesignandAnalysisofDNAMicroarrayInvestigations.pdf">DIfferential Gene Expression in arrays</a></p>
+</div>
+<div id="r-packages" class="section level2">
+<h2>R Packages</h2>
+<pre class="r"><code>citation(&quot;Biobase&quot;)</code></pre>
+<pre><code>## 
+##   Orchestrating high-throughput genomic analysis with
+##   Bioconductor. W. Huber, V.J. Carey, R. Gentleman, ..., M. Morgan
+##   Nature Methods, 2015:12, 115.
+## 
+## A BibTeX entry for LaTeX users is
+## 
+##   @Article{,
+##     author = {W. Huber and V. J. Carey and R. Gentleman and S. Anders and M. Carlson and B. S. Carvalho and H. C. Bravo and S. Davis and L. Gatto and T. Girke and R. Gottardo and F. Hahne and K. D. Hansen and R. A. Irizarry and M. Lawrence and M. I. Love and J. MacDonald and V. Obenchain and A. K. {Ole&#39;s} and H. {Pag`es} and A. Reyes and P. Shannon and G. K. Smyth and D. Tenenbaum and L. Waldron and M. Morgan},
+##     title = {{O}rchestrating high-throughput genomic analysis with {B}ioconductor},
+##     journal = {Nature Methods},
+##     year = {2015},
+##     volume = {12},
+##     number = {2},
+##     pages = {115--121},
+##     url = {http://www.nature.com/nmeth/journal/v12/n2/full/nmeth.3252.html},
+##   }</code></pre>
+<pre class="r"><code>citation(&quot;GEOquery&quot;)</code></pre>
+<pre><code>## 
+## Please cite the following if utilizing the GEOquery software:
+## 
+##   Davis, S. and Meltzer, P. S. GEOquery: a bridge between the Gene
+##   Expression Omnibus (GEO) and BioConductor. Bioinformatics, 2007,
+##   14, 1846-1847
+## 
+## A BibTeX entry for LaTeX users is
+## 
+##   @Article{,
+##     author = {Sean Davis and Paul Meltzer},
+##     title = {GEOquery: a bridge between the Gene Expression Omnibus (GEO) and BioConductor},
+##     journal = {Bioinformatics},
+##     year = {2007},
+##     volume = {14},
+##     pages = {1846--1847},
+##   }</code></pre>
+<pre class="r"><code>citation(&quot;limma&quot;)</code></pre>
+<pre><code>## 
+## Please cite the paper below for the limma software itself.  Please
+## also try to cite the appropriate methodology articles that
+## describe the statistical methods implemented in limma, depending
+## on which limma functions you are using.  The methodology articles
+## are listed in Section 2.1 of the limma User&#39;s Guide.
+## 
+##   Ritchie, M.E., Phipson, B., Wu, D., Hu, Y., Law, C.W., Shi, W.,
+##   and Smyth, G.K. (2015). limma powers differential expression
+##   analyses for RNA-sequencing and microarray studies. Nucleic
+##   Acids Research 43(7), e47.
+## 
+## A BibTeX entry for LaTeX users is
+## 
+##   @Article{,
+##     author = {Matthew E Ritchie and Belinda Phipson and Di Wu and Yifang Hu and Charity W Law and Wei Shi and Gordon K Smyth},
+##     title = {{limma} powers differential expression analyses for {RNA}-sequencing and microarray studies},
+##     journal = {Nucleic Acids Research},
+##     year = {2015},
+##     volume = {43},
+##     number = {7},
+##     pages = {e47},
+##     doi = {10.1093/nar/gkv007},
+##   }</code></pre>
+</div>
+<div id="sample-source-information-of-raw-data-from-geo-data-sets" class="section level2">
+<h2>Sample Source Information of raw data from <a href="https://www.ncbi.nlm.nih.gov/gds">GEO Data Sets</a></h2>
 <ol style="list-style-type: decimal">
 <li><p>N_2847_24h_S Organism: Canis lupus familiaris Source name: skin_treated_saline_24h Platform: GPL18789 Series: GSE58442 FTP download: GEO (TXT) <a href="ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM1411nnn/GSM1411196/" class="uri">ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM1411nnn/GSM1411196/</a> Sample Accession: GSM1411196 ID: 301411196</p></li>
 <li><p>N_2847_24h_A Organism: Canis lupus familiaris Source name: skin_treated_allergen_24h Platform: GPL18789 Series: GSE58442 FTP download: GEO (TXT) <a href="ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM1411nnn/GSM1411195/" class="uri">ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM1411nnn/GSM1411195/</a> Sample Accession: GSM1411195 ID: 301411195</p></li>
@@ -645,6 +794,7 @@ topTable(fit2)</code></pre>
 <li><p>A_2838_24h_A Organism: Canis lupus familiaris Source name: skin_treated_allergen_24h Platform: GPL18789 Series: GSE58442 FTP download: GEO (TXT) <a href="ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM1411nnn/GSM1411140/" class="uri">ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM1411nnn/GSM1411140/</a> Sample Accession: GSM1411140 ID: 301411140</p></li>
 <li><p>A_2838_0h Organism: Canis lupus familiaris Source name: skin_untreated_0h Platform: GPL18789 Series: GSE58442 FTP download: GEO (TXT) <a href="ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM1411nnn/GSM1411137/" class="uri">ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM1411nnn/GSM1411137/</a> Sample Accession: GSM1411137 ID: 301411137</p></li>
 </ol>
+</div>
 </div>
 
 
