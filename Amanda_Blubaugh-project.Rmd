@@ -1,7 +1,7 @@
 ---
 title: "Bios 8060E Project"
 author: "Amanda Blubaugh"
-date: 'last updated: 10/13/2019'
+date: 'last updated: 11/2/2019'
 output:
   html_document
 ---
@@ -62,28 +62,30 @@ BiocManager::install(c("Biobase","GEOquery","limma"))
 <br>
 
 ## Load libraries for use
-```{r}
+```{r load_libraries}
 library(limma)
 library(Biobase)
 library(GEOquery)
 library(tidyverse)
+library(ggplot2)
+library(RColorBrewer)
 ```
 
 ## Cache data from GEO datasets
-```{r}
+```{r get_data}
 gset <- getGEO("GSE58442", GSEMatrix =TRUE, AnnotGPL=FALSE)
 if (length(gset) > 1) idx <- grep("GPL18789", attr(gset, "names")) else idx <- 1
 gset <- gset[[idx]]
 ```
 
 ### Inspect Uncleaned Data
-```{r}
+```{r inspection}
 head(gset)
-head(pData)
+head(pData(gset))
 ```
 
 ## Preliminary Analysis with GEO2R
-```{r}
+```{r GEO2R_preliminary}
 # make proper column names to match toptable 
 fvarLabels(gset) <- make.names(fvarLabels(gset))
 fvarLabels(gset)
@@ -119,7 +121,7 @@ fit2 <- eBayes(fit)
 topTable(fit2)
 
 ```
-In this preliminary analysis, we can see which probes had the highest scoring False Discovery Rate (FDR)/ adjusted p-value for change in probe fluoresence (number of bound, tagged fluorescent transcripts to the probe on the microarray) with a basic linear model, adjusted with a Bayesian fit. I don't have probes that have a gene symbol attached to them separated from those without a gene symbol. I also haven't viewed other aspects of the data yet (principal component analysis (PCA) for example).
+In this preliminary analysis, we can see which probes had the lowest/best scoring False Discovery Rate (FDR)/ adjusted p-value for change in probe fluoresence (number of bound, tagged fluorescent transcripts to the probe on the microarray) with a basic linear model, adjusted with a Bayesian fit. I don't have probes that have a gene symbol attached to them separated from those without a gene symbol. I also haven't viewed other aspects of the data yet (principal component analysis (PCA) for example).
 
 
 ## Aquire additional phenotypic data for local use of samples in this study
@@ -127,13 +129,12 @@ Going to [GEO2R](https://www.ncbi.nlm.nih.gov/geo/geo2r/), we can obtain the phe
 
 Phenotypic data for each raw .txt file can be highlighted and read into a .txt file for manipulation with the raw data (i.e. to clean it up in a way we can acheive ultimate our goals in the study)
 
-```{r}
+```{r load_metadata}
 #Here, we locate where we saved the .txt file we got for reading metadata into a table, notating that the file has tabular separations ("\t" for sep), that there is a header for each column (our variables; header=TRUE), and that we have row names which are the same .txt GSM# .txt files that we have read in previously.
 
-META <- read.table("./data/processed_data/Schamber_phenotypes.txt", sep="\t", header=TRUE, row.names=1)
-head(META)
-META_tib <- as_tibble(META, row.names=rownames(META))
-META_tib
+META <- read.AnnotatedDataFrame("./data/processed_data/Schamber_phenotypes.txt", sep="\t", header=TRUE, row.names=1)
+head(pData(META))
+
 
 ```
 
@@ -142,7 +143,19 @@ In this metadata information table I have created, I have manually added color i
 ## Principal Component Analysis
 In PCA, the heirarchical clustering algorithm does not take phenotypic groups into account. Using our additional metadata coloring, we can create a PCA with the microarry data we have.
 
-```{r}
+```{r pca}
+pca <- prcomp(scale(t(exprs(gset))))
+summary(pca)
+
+colors <- META$ColorSens
+labels <- META$Label
+legendlabels <- c("0h no Tx","0h no Tx sensitized","6h saline", "6h saline sensitized","24h saline","24h saline sensitized","6h HDM","6h HDM sensitized","24h HDM","24h HDM sensitized")
+legendcolors <- c("darkgreen","darkolivegreen1","darkorchid4","orchid2","darkblue","royalblue1","gold","lightgoldenrod2","firebrick","coral1")
+
+plot(pca$x[,1:2],  col=colors, pch=19, cex=2.0)
+text(pca$x[,1:2], labels=labels, col="black", pos=1, cex=0.5)
+legend("topleft", legend= legendlabels, col=legendcolors, bty="n", horiz=FALSE, cex=0.75, pch=19)
+
 knitr::include_graphics("./results/Schamber_2d_PCA_with_all_variables_lower_res.png")
 
 ```
