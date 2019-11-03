@@ -73,6 +73,9 @@ library(RColorBrewer)
 
 ## Cache data from GEO datasets
 ```{r get_data}
+
+#You can search in the NCBI GEOquery database with the GSE number: GSE58442
+#The getGEO function in GEOquery library uses this identifier to gather our data
 gset <- getGEO("GSE58442", GSEMatrix =TRUE, AnnotGPL=FALSE)
 if (length(gset) > 1) idx <- grep("GPL18789", attr(gset, "names")) else idx <- 1
 gset <- gset[[idx]]
@@ -112,6 +115,7 @@ gset$description <- fl
 
 # Create and view design matrix
 design <- model.matrix(~ description + 0, gset)
+
 colnames(design) <- levels(fl)
 head(design)
 
@@ -156,7 +160,63 @@ plot(pca$x[,1:2],  col=colors, pch=19, cex=2.0)
 text(pca$x[,1:2], labels=labels, col="black", pos=1, cex=0.5)
 legend("topleft", legend= legendlabels, col=legendcolors, bty="n", horiz=FALSE, cex=0.75, pch=19)
 
+#this pca was finalized with the same code above after the line tiff("Schamber_2dPCA_preliminary.tiff", width=10, height=10, units='in', res=300)
 knitr::include_graphics("./results/Schamber_2d_PCA_with_all_variables_lower_res.png")
+
+```
+
+## Back to data for additional cleaning
+
+```{r get_gene_symbols}
+head(pData(gset))
+
+#head(exprs(gset))
+
+annotation <- read.csv("./data/raw_data/GPL18789-28160.txt", sep="\t", header=TRUE)
+
+probe_to_gene <- annotation[,c(1,10)]
+merged_data <- merge(probe_to_gene, exprs(gset), by="row.names")
+#merged_data
+
+```
+
+```{r cleaned_up}
+
+#Remember, our exprs(gset) already had the variance stabilized accross the mean
+merged_data <- as.data.frame(merged_data)
+#merged_data
+
+no_gene_known_removed <- merged_data %>%
+  filter(merged_data$GENE_SYMBOL != "")
+
+numbers_gone <- no_gene_known_removed %>%
+  select(-c(Row.names, ID))
+
+#numbers_gone
+
+#design
+
+#Did the code below to make the final raw data copy for data to be used in this experiment
+#write.table(numbers_gone, "./data/raw_data/merged_raw_data.txt", sep="\t")
+
+
+```
+
+## Set Up Design Tables
+
+G0 = 0h untreated
+G1 = 6h HDM
+G2 = 6h saline
+G3 = 24h HDM
+G4 = 24h saline
+
+Further, half of the dogs are sensitized and half are not, which is also info in our metadata table.
+
+```{r design_groups}
+
+#Looking back at our initial results from our exploratory analysis
+
+#topTable(fit2)
 
 ```
 
@@ -176,7 +236,7 @@ Nucleic Acids Res. 2002 Jan 1;30(1):207-10
 [Simon et al.](https://brb.nci.nih.gov/techreport/DesignandAnalysisofDNAMicroarrayInvestigations.pdf) Design and Analysis of DNA Microarray Investigations. Springer-Veriag, New York. ISBN ISBN 0-387-00135-2. pp 66-69: Differential Gene Expression in Microarrays.
 
 ## R Packages
-```{r}
+```{r citations}
 citation("Biobase")
 citation("GEOquery")
 citation("limma")
