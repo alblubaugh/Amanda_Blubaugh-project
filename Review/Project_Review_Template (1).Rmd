@@ -1,0 +1,174 @@
+# Overview
+
+Title of project: "Bios 8060E Project"
+
+Author of project: "Amanda Blubaugh"
+
+
+# Instructions
+
+Write your comments and feedback below for each section/compontent of the project. The goal should be to help the author improve their project. Make comments as constructive and actionable as possible. You can provide both criticism and praise.
+
+For each component, pick one summary statement by deleting the ones that do not apply and keeping only the one that you think most closely summarizes a given component. 
+
+Delete any sections/text of this template that are not part of your final review document.
+
+
+# Specific project content evaluation
+Evaluate the different parts of the project by filling in the sections below.
+
+
+## Background, Context and Motivation
+How well is the context of the project described? Is a comprehensive background, including summary of previous/related work given? Is the project well placed into the context of existing work (including proper referencing of existing work). Is it clear why the project was undertaken and what new information it hopes to provide?
+
+### Feedback and Comments
+
+Although you kind of describe what you aim to do with the project, there is very little background information. You describe this being a prior study. I did see a few references and does aim to provide some new information with the analysis. It does seem novel, however.
+
+### Summary assessment
+* some contextualization and motivation
+
+
+
+## Question description
+How well and clear are the question(s)/hypotheses the project aims to address described? Is it clear how the questions relate to the data?
+
+
+### Feedback and Comments
+
+The questions are somewhat clear and simple. The only thing that makes them unclear is that there was not enough background data to lead me into why you are doing what you're doing. 
+
+### Summary assessment
+* question/hypotheses somewhat explained
+
+
+
+## Data description
+How well is the data overall described? Is the source provided? Is a codebook or other meta-information available that makes it clear what the data is? 
+
+### Feedback and Comments
+
+The data is fairly clear and there is a link to the original data source. It could use some more explanations.
+
+### Summary assessment
+* source and overall structure of data well explained
+
+
+## Data wrangling and exploratory analysis
+How well is the data cleaned/processed and explored? Are all steps reasonable and well explained? Are alternatives discussed and considered? Are meaningful exploratory results shown (e.g. in the supplementary materials)?
+
+### Feedback and Comments
+
+While I can see that you did do some cleaning and wrangling, I believe it should not be in the manuscript. I also could not get the code to run with the packages you mention to install. 
+
+### Summary assessment
+
+* some weaknesses in wrangling and exploratory component
+
+
+
+
+## Appropriateness of Analysis
+Were the analysis methods appropriate for the data? Was the analysis done properly? Were different components of the analysis (e.g. performance measure, variable selection, data pre-processing, model evaluation) done in the best way possible and explained well?
+
+### Feedback and Comments
+
+It was hard to determine because I am not a Data Scientist, and the project seems to do the correct analysis. I did not see any additional reasonings as to why you chose this analysis that would at least lead me to believe you are doing it correctly. 
+
+### Summary assessment
+
+* defensible but not optimal analysis 
+
+
+## Presentation
+How well are results presented? Are tables and figures easy to read and understand? Are the main figures/tables publication level quality? 
+
+### Feedback and Comments
+
+There are good looking figures, but they should be in your manuscript. I did have to dig to find them. I am not sure if they are presentable. 
+
+### Summary assessment
+* results are presented ok, with room for improvement
+
+
+
+## Discussion/Conclusions
+Are the study findings properly discussed? Are strengths and limitations acknowledged? Are findings interpreted properly?
+
+### Feedback and Comments
+
+I did not see a discussion, even though you had some figures and code in the manuscript where you discussed some findings, but it was not in great detail. 
+
+### Summary assessment
+* major parts of discussion missing or wrong 
+
+
+
+## Further comments
+
+_Add any other comments regarding the different aspects of the project here. Write anything you think can help your classmate improve their project._
+
+
+
+# Overall project content evaluation
+Evaluate overall features of the project  by filling in the sections below.
+
+
+## Structure
+Is the project well structured? Are files in well labeled folders? Do files have reasonable names? Are all "junk" files not needed for analysis/reproduction removed? By just looking at files and folders, can you get an idea of how things fit together?
+
+### Feedback and Comments
+
+Honestly, I had a hard time finding stuff. You have code in the manuscript that seems unnecessary. Parts of the manuscript are missing. It appears as though you are unfinished. 
+
+### Summary assessment
+* poor and confusing structure
+
+
+
+## Documentation 
+How well is the project documented? Are you able to understand each step of the whole analysis, each decision that was made, and each line of code? Is enough information provided as comments in code or as part of Rmd files? 
+
+### Feedback and Comments
+
+You have some documentation, however it is hard to understand and not structured well. You need to use more folders to make your manuscript easy to find. I accidentally was working on another manuscript of yours from two months ago before I found this one. 
+
+### Summary assessment
+* poorly documented
+
+
+
+
+## Reproducibility
+Are all results fully reproducible? Is documentation provided which clearly explains how to reproduce things, and does it work without the need for any manual intervention?
+
+### Feedback and Comments
+
+I am not sure. I could not get the code to run, and although it looks like you have a good chunk of code, it will not run on my computer. 
+
+
+### Summary assessment
+* major parts not reproducible 
+
+
+
+## Thoroughness
+How thorough was the overall study? Were alternatives (e.g. different ways of processing the data or different models) considered? Were alternatives discussed? Were the questions/hypotheses fully and thoroughly addressed?
+
+### Feedback and Comments
+
+It appears that you have some thorough ideas in your project and have begun working on it, but there is a lot missing, as well as misplaced files and also a lacking Manuscript. 
+
+### Summary assessment
+* decent level of thoroughness
+
+
+
+## Further comments
+
+Overall, I think that you need to keep working because it appears that major parts are missing at this point. I think it would be helpful to look at Dr. Handel's template again to figure out what to add and where to add it. Good luck~
+
+
+
+
+
