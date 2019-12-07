@@ -1,0 +1,176 @@
+# Overview
+
+Title of project:Transcriptomic profile differences in atopic dermatitis (AD) canid house dust mite (HDM) models when considering using multifactorial differential expression for sensitization of model dogs
+
+Author of project:Amanda Blubaugh
+
+
+# Instructions
+
+Write your comments and feedback below for each section/compontent of the project. The goal should be to help the author improve their project. Make comments as constructive and actionable as possible. You can provide both criticism and praise.
+
+For each component, pick one summary statement by deleting the ones that do not apply and keeping only the one that you think most closely summarizes a given component. 
+
+Delete any sections/text of this template that are not part of your final review document.
+
+
+# Specific project content evaluation
+Evaluate the different parts of the project by filling in the sections below.
+
+
+## Background, Context and Motivation
+How well is the context of the project described? Is a comprehensive background, including summary of previous/related work given? Is the project well placed into the context of existing work (including proper referencing of existing work). Is it clear why the project was undertaken and what new information it hopes to provide?
+
+### Feedback and Comments
+
+This project topic seems pretty cool and it wouldve been nice to see more background information/context.
+
+### Summary assessment
+* 
+* some contextualization and motivation
+* 
+
+
+## Question description
+How well and clear are the question(s)/hypotheses the project aims to address described? Is it clear how the questions relate to the data?
+
+
+### Feedback and Comments
+
+The questions/hypothesis are clearly stated under "Goals" and Hypotheses"
+
+### Summary assessment
+* question/hypotheses fully clear
+
+
+## Data description
+  
+
+### Feedback and Comments
+
+There is a source provided with samples from a previously published paper.
+
+### Summary assessment
+* source and overall structure of data well explained
+
+
+## Data wrangling and exploratory analysis
+How well is the data cleaned/processed and explored? Are all steps reasonable and well explained? Are alternatives discussed and considered? Are meaningful exploratory results shown (e.g. in the supplementary materials)?
+
+### Feedback and Comments
+
+I can visibly see the steps taken in data cleaning/processing as well as some commentary/instructions in the code chunks. 
+
+### Summary assessment
+
+* essentially no weaknesses in wrangling and exploratory component
+
+
+
+## Appropriateness of Analysis
+Were the analysis methods appropriate for the data? Was the analysis done properly? Were different components of the analysis (e.g. performance measure, variable selection, data pre-processing, model evaluation) done in the best way possible and explained well?
+
+### Feedback and Comments
+
+Project utilized a basic linear model, adjusted with a Bayesian fit. 
+Only suggestion is to turn code into visible table in word doc. 
+
+### Summary assessment
+
+* strong and reasonable analysis
+
+## Presentation
+How well are results presented? Are tables and figures easy to read and understand? Are the main figures/tables publication level quality? 
+
+### Feedback and Comments
+
+PCA figure was easy to read and understand, but consider making legend on PCA analysis larger. Consider creating more charts/ tables for final word doc. There are a lot of code chunks and very little figures/tables. 
+
+### Summary assessment
+
+* results are presented ok, with room for improvement
+
+
+
+## Discussion/Conclusions
+Are the study findings properly discussed? Are strengths and limitations acknowledged? Are findings interpreted properly?
+
+### Feedback and Comments
+
+TThere isn't much of a discussion or conclusion. I know its difficult to go into depth on pre-produced results, but possibly consider discussing results more. Sumarize what the original authors found, but go more in depth/ add what further implications this can have in this field. 
+
+### Summary assessment
+
+* minor parts wrong, missing or unclear
+
+
+
+## Further comments
+
+_Add any other comments regarding the different aspects of the project here. Write anything you think can help your classmate improve their project._
+
+
+
+# Overall project content evaluation
+Evaluate overall features of the project  by filling in the sections below.
+
+
+## Structure
+Is the project well structured? Are files in well labeled folders? Do files have reasonable names? Are all "junk" files not needed for analysis/reproduction removed? By just looking at files and folders, can you get an idea of how things fit together?
+
+### Feedback and Comments
+
+Project appears to be well structured. There are no junk files, and all files/folders appear to have appropiate names.
+
+### Summary assessment
+
+* well structured
+
+
+## Documentation 
+How well is the project documented? Are you able to understand each step of the whole analysis, each decision that was made, and each line of code? Is enough information provided as comments in code or as part of Rmd files? 
+
+### Feedback and Comments
+
+Steps could be explained in more detail, but otherwise still easy to follow.
+
+### Summary assessment
+
+* fully and well documented
+
+
+
+## Reproducibility
+Are all results fully reproducible? Is documentation provided which clearly explains how to reproduce things, and does it work without the need for any manual intervention?
+
+### Feedback and Comments
+
+Once I downloaded the correct packages/software for Bioconductor, GEOquery, and lima the project was reproducible. I ran into a couple of bumps in the road, but all was well. 
+
+
+### Summary assessment
+
+* small parts not reproducible or required manual intervention 
+
+
+
+## Thoroughness
+How thorough was the overall study? Were alternatives (e.g. different ways of processing the data or different models) considered? Were alternatives discussed? Were the questions/hypotheses fully and thoroughly addressed?
+
+### Feedback and Comments
+Both hypotheses were addressed, however there werent different ways of processing the data or different models mentioned. 
+
+### Summary assessment
+
+* decent level of thoroughness
+
+
+
+## Further comments
+
+I think the code chunks in your final document should be turned into figures/tables to seem more like a journal article. I know the data is from a previous source, but consider including more discussion and a conclusion as to why this topic is important in your field. 
+
+
+
+
+
